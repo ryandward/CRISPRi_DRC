@@ -44,40 +44,39 @@ This repository provides a workflow for conducting dose-response curve (DRC) ana
 
 ## Packages Overview
 
-The code uses pacman to manage loading multiple R packages succinctly. Key packages include:
-• dplyr and tidyr for data manipulation.  
-• drc for dose-response curve fitting.  
-• data.table for efficient reading and writing of data.  
-• purrr for mapping functions over lists.  
-• broom for tidying model outputs.  
+The code uses `pacman` to manage loading multiple R packages succinctly. Key packages include:
 
-This repository uses a more memory-efficient fork of the “drc” package, hosted at “ryandward/drc,” because the default drc library typically is not optimized for fitting tens of thousands of models simultaneously.
+- `dplyr` and `tidyr` for data manipulation
+- `drc` (memory-efficient fork from ryandward/drc) for dose-response curve fitting
+- `data.table` for efficient reading and writing of data
+- `purrr` for mapping functions over lists
+- `broom` for tidying model outputs
 
-Several utility packages such as progress, conflicted, and others help in controlling function conflicts and monitoring progress.
+Several utility packages such as `progress` and `conflicted` help in controlling function conflicts and monitoring progress.
 
 ---
 
 ## File Descriptions
 
-1. **packages.R**  
-   - Installs and loads the required R packages.  
-   - Defines any conflict resolution for package functions with overlapping names.
+1. `packages.R`
+   - Installs and loads the required R packages
+   - Defines any conflict resolution for package functions with overlapping names
 
-2. **drc_logistic_functions.R**  
-   - Implements specialized logistic (Brain-Cousens) model definitions and constraints.  
-   - Provides helper functions to extract predictions, summarize vulnerabilities, compute performance metrics, and compare models via LRT.
+2. `drc_logistic_functions.R`
+   - Implements specialized logistic (Brain-Cousens) model definitions and constraints
+   - Provides helper functions to extract predictions, summarize vulnerabilities, compute performance metrics, and compare models via LRT
 
-3. **multiple_fit_testing.R**  
-   - Serves as the main script orchestrating data loading, model fitting, result storing, and final comparisons.  
-   - Uses straightforward checks to decide whether to read previous model results or re-fit from scratch.  
-   - Produces p-value-based filtering outputs and final results that can then be written to disk.
+3. `multiple_fit_testing.R`
+   - Serves as the main script orchestrating data loading, model fitting, result storing, and final comparisons
+   - Uses straightforward checks to decide whether to read previous results or re-fit from scratch
+   - Produces p-value-based filtering outputs and final results that can then be written to disk
 
-4. **guide_key.tsv and tags_to_genes.tsv**  
-   - Example data used to create “genes_of_interest” and “edges” for analysis.  
-   - Not part of the committed code, but expected to be in the same directory.
+4. `guide_key.tsv` and `tags_to_genes.tsv`
+   - Example data used to create "genes_of_interest" and "edges" for analysis
+   - Not part of the committed code, but expected to be in the same directory
 
-5. **edgeR_results.tsv**  
-   - Contains preliminarily processed expression data on which the models are built.
+5. `edgeR_results.tsv`
+   - Contains preliminarily processed expression data on which the models are built
 
 ---
 
@@ -103,13 +102,15 @@ Several utility packages such as progress, conflicted, and others help in contro
 
 ## Key Outputs
 
-• model_comparisons.tsv – Compares the likelihood (logLik) of full vs. reduced models for each gene-condition pair.  
-• model_comparisons_hormesis.tsv – Includes additional details for hormesis-related parameters.  
-• hormetic_vulnerability_summary_*.tsv.gz – Summaries of gene vulnerabilities based on Brain-Cousens fits.  
-• hormetic_fit_points_*.tsv.gz – Points used in model plotting, matching each gene-condition to predicted curves.  
-• hormetic_parameters_*.tsv.gz – Model parameters (e.g., kd_50, shape, hormesis) for deeper analysis.  
+The script generates several output files in the `Results` directory:
 
-These files are compressed (zipped) TSV outputs. They can be found in the "Results" folder and are stored alongside in-memory objects to save time when re-running extensive model fits.
+- `model_comparisons.tsv`: Compares the likelihood (logLik) of full vs. reduced models for each gene-condition pair
+- `model_comparisons_hormesis.tsv`: Includes additional details for hormesis-related parameters
+- `hormetic_vulnerability_summary_*.tsv.gz`: Summaries of gene vulnerabilities based on Brain-Cousens fits
+- `hormetic_fit_points_*.tsv.gz`: Points used in model plotting, matching each gene-condition to predicted curves
+- `hormetic_parameters_*.tsv.gz`: Model parameters (e.g., kd_50, shape, hormesis) for deeper analysis
+
+These files are compressed (gzipped) TSV outputs stored alongside in-memory objects to save time when re-running extensive model fits.
 
 ---
 
