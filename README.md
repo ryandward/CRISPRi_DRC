@@ -1,5 +1,13 @@
 **IMPORTANT**: If your data is not adjusted (e.g., if LFC values are not correctly normalized or baseline-corrected), the script may fail or produce meaningless results. The modeling here is highly sensitive to subtle changes in fitness. Because this pipeline analyzes data globally rather than focusing on single outliers, using properly normalized data is critical for reliable outcomes.
 
+## Quickstart
+
+If you want to ensure your system is ready, open an R session in this directory, run:
+  
+source("multiple_fit_testing.R")
+
+This will attempt to load data, fit models under default settings, and save outputs. Reviewing any error messages or warnings will help confirm successful setup.
+
 # CRISPRi_DRC Workflow
 
 This repository provides a workflow for conducting dose-response curve (DRC) analyses on CRISPR interference (CRISPRi) data. Below is a detailed walkthrough of how to set up and execute the pipeline, along with explanations of the most critical functions and files.
