@@ -3,8 +3,10 @@
 ## Quickstart
 
 If you want to ensure your system is ready, open an R session in this directory, run:
-  
+
+```R
 source("multiple_fit_testing.R")
+```
 
 This will attempt to load data, fit models under default settings, and save outputs. Reviewing any error messages or warnings will help confirm successful setup.
 
